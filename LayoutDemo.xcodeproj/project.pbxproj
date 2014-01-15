@@ -19,6 +19,10 @@
 		D3EBC88418863D5E00194736 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EBC86C18863D5E00194736 /* UIKit.framework */; };
 		D3EBC88C18863D5E00194736 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3EBC88A18863D5E00194736 /* InfoPlist.strings */; };
 		D3EBC88E18863D5E00194736 /* LayoutDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC88D18863D5E00194736 /* LayoutDemoTests.m */; };
+		D3EBC89918863D7F00194736 /* UICollectionViewLayout+Layouts.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC89818863D7F00194736 /* UICollectionViewLayout+Layouts.m */; };
+		D3EBC89F18863DCB00194736 /* PTLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC89E18863DCB00194736 /* PTLCollectionViewController.m */; };
+		D3EBC8A218863DEE00194736 /* PTLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC8A118863DEE00194736 /* PTLCollectionViewCell.m */; };
+		D3EBC8A418863DFE00194736 /* PTLCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3EBC8A318863DFE00194736 /* PTLCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,13 @@
 		D3EBC88918863D5E00194736 /* LayoutDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LayoutDemoTests-Info.plist"; sourceTree = "<group>"; };
 		D3EBC88B18863D5E00194736 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3EBC88D18863D5E00194736 /* LayoutDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutDemoTests.m; sourceTree = "<group>"; };
+		D3EBC89718863D7F00194736 /* UICollectionViewLayout+Layouts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewLayout+Layouts.h"; sourceTree = "<group>"; };
+		D3EBC89818863D7F00194736 /* UICollectionViewLayout+Layouts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewLayout+Layouts.m"; sourceTree = "<group>"; };
+		D3EBC89D18863DCB00194736 /* PTLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLCollectionViewController.h; sourceTree = "<group>"; };
+		D3EBC89E18863DCB00194736 /* PTLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLCollectionViewController.m; sourceTree = "<group>"; };
+		D3EBC8A018863DEE00194736 /* PTLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLCollectionViewCell.h; sourceTree = "<group>"; };
+		D3EBC8A118863DEE00194736 /* PTLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLCollectionViewCell.m; sourceTree = "<group>"; };
+		D3EBC8A318863DFE00194736 /* PTLCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTLCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +118,8 @@
 		D3EBC86E18863D5E00194736 /* LayoutDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D3EBC8A618863E8200194736 /* Collections View */,
+				D3EBC8A518863E6F00194736 /* Layouts */,
 				D3EBC87718863D5E00194736 /* PTLAppDelegate.h */,
 				D3EBC87818863D5E00194736 /* PTLAppDelegate.m */,
 				D3EBC87A18863D5E00194736 /* Images.xcassets */,
@@ -142,6 +155,27 @@
 				D3EBC88A18863D5E00194736 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3EBC8A518863E6F00194736 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D3EBC89718863D7F00194736 /* UICollectionViewLayout+Layouts.h */,
+				D3EBC89818863D7F00194736 /* UICollectionViewLayout+Layouts.m */,
+			);
+			name = Layouts;
+			sourceTree = "<group>";
+		};
+		D3EBC8A618863E8200194736 /* Collections View */ = {
+			isa = PBXGroup;
+			children = (
+				D3EBC89D18863DCB00194736 /* PTLCollectionViewController.h */,
+				D3EBC89E18863DCB00194736 /* PTLCollectionViewController.m */,
+				D3EBC8A018863DEE00194736 /* PTLCollectionViewCell.h */,
+				D3EBC8A118863DEE00194736 /* PTLCollectionViewCell.m */,
+				D3EBC8A318863DFE00194736 /* PTLCollectionViewCell.xib */,
+			);
+			name = "Collections View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3EBC87318863D5E00194736 /* InfoPlist.strings in Resources */,
+				D3EBC8A418863DFE00194736 /* PTLCollectionViewCell.xib in Resources */,
 				D3EBC87B18863D5E00194736 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,7 +276,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3EBC87518863D5E00194736 /* main.m in Sources */,
+				D3EBC89F18863DCB00194736 /* PTLCollectionViewController.m in Sources */,
+				D3EBC89918863D7F00194736 /* UICollectionViewLayout+Layouts.m in Sources */,
 				D3EBC87918863D5E00194736 /* PTLAppDelegate.m in Sources */,
+				D3EBC8A218863DEE00194736 /* PTLCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

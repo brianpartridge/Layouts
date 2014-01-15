@@ -7,6 +7,8 @@
 //
 
 #import "PTLAppDelegate.h"
+#import "PTLCollectionViewController.h"
+#import "UICollectionViewLayout+Layouts.h"
 
 @implementation PTLAppDelegate
 
@@ -14,6 +16,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+
+    UICollectionViewLayout *layout = [UICollectionViewLayout defaultLayout];
+    PTLCollectionViewController *vc = [[PTLCollectionViewController alloc] initWithCollectionViewLayout:layout];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
