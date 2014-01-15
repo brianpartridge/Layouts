@@ -17,7 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 
-    UICollectionViewLayout *layout = [UICollectionViewLayout defaultLayout];
+    UICollectionViewLayout *layout = [UICollectionViewLayout circleLayout];
     PTLCollectionViewController *vc = [[PTLCollectionViewController alloc] initWithCollectionViewLayout:layout];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;

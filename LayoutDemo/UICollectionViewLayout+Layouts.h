@@ -11,5 +11,6 @@
 @interface UICollectionViewLayout (Layouts)
 
 + (UICollectionViewFlowLayout *)defaultLayout;
++ (UICollectionViewLayout *)circleLayout;
 
 @end

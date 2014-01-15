@@ -23,6 +23,7 @@
 		D3EBC89F18863DCB00194736 /* PTLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC89E18863DCB00194736 /* PTLCollectionViewController.m */; };
 		D3EBC8A218863DEE00194736 /* PTLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC8A118863DEE00194736 /* PTLCollectionViewCell.m */; };
 		D3EBC8A418863DFE00194736 /* PTLCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3EBC8A318863DFE00194736 /* PTLCollectionViewCell.xib */; };
+		D3EBC8A9188642DF00194736 /* PTLCircleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EBC8A8188642DF00194736 /* PTLCircleLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		D3EBC8A018863DEE00194736 /* PTLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLCollectionViewCell.h; sourceTree = "<group>"; };
 		D3EBC8A118863DEE00194736 /* PTLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLCollectionViewCell.m; sourceTree = "<group>"; };
 		D3EBC8A318863DFE00194736 /* PTLCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTLCollectionViewCell.xib; sourceTree = "<group>"; };
+		D3EBC8A7188642DF00194736 /* PTLCircleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTLCircleLayout.h; sourceTree = "<group>"; };
+		D3EBC8A8188642DF00194736 /* PTLCircleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTLCircleLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 			children = (
 				D3EBC89718863D7F00194736 /* UICollectionViewLayout+Layouts.h */,
 				D3EBC89818863D7F00194736 /* UICollectionViewLayout+Layouts.m */,
+				D3EBC8A7188642DF00194736 /* PTLCircleLayout.h */,
+				D3EBC8A8188642DF00194736 /* PTLCircleLayout.m */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3EBC8A9188642DF00194736 /* PTLCircleLayout.m in Sources */,
 				D3EBC87518863D5E00194736 /* main.m in Sources */,
 				D3EBC89F18863DCB00194736 /* PTLCollectionViewController.m in Sources */,
 				D3EBC89918863D7F00194736 /* UICollectionViewLayout+Layouts.m in Sources */,

@@ -79,6 +79,4 @@ static NSString * const kCellId = @"Cell";
     return cell;
 }
 
-
-
 @end

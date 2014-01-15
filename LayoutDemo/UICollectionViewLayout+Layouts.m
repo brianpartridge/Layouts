@@ -7,6 +7,7 @@
 //
 
 #import "UICollectionViewLayout+Layouts.h"
+#import "PTLCircleLayout.h"
 
 @implementation UICollectionViewLayout (Layouts)
 
@@ -15,6 +16,11 @@
     layout.itemSize = CGSizeMake(50, 50);
     layout.minimumInteritemSpacing = 10;
     layout.minimumLineSpacing = 10;
+    return layout;
+}
+
++ (UICollectionViewLayout *)circleLayout {
+    PTLCircleLayout *layout = [[PTLCircleLayout alloc] init];
     return layout;
 }
 
