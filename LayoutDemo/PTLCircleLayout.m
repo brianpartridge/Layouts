@@ -16,6 +16,9 @@
 @property (nonatomic, assign) CGPoint circleCenter;
 @property (nonatomic, assign) CGFloat circleRadius;
 
+@property (nonatomic, strong) NSMutableArray *deleteIndexPaths;
+@property (nonatomic, strong) NSMutableArray *insertIndexPaths;
+
 @end
 
 @implementation PTLCircleLayout
@@ -38,6 +41,33 @@
     self.circleCenter = CGPointMake(CGRectGetMidX(self.collectionView.bounds),
                                     CGRectGetMidY(self.collectionView.bounds));
     self.circleRadius = CGRectGetWidth(self.collectionView.bounds) / 2.0;
+}
+
+- (void)prepareForCollectionViewUpdates:(NSArray *)updateItems {
+    [super prepareForCollectionViewUpdates:updateItems];
+
+    self.deleteIndexPaths = [NSMutableArray array];
+    self.insertIndexPaths = [NSMutableArray array];
+
+    for (UICollectionViewUpdateItem *updateItem in updateItems) {
+        switch (updateItem.updateAction) {
+            case UICollectionUpdateActionDelete:
+                [self.deleteIndexPaths addObject:updateItem.indexPathBeforeUpdate];
+                break;
+            case UICollectionUpdateActionInsert:
+                [self.insertIndexPaths addObject:updateItem.indexPathAfterUpdate];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)finalizeCollectionViewUpdates {
+    [super finalizeCollectionViewUpdates];
+
+    self.deleteIndexPaths = nil;
+    self.insertIndexPaths = nil;
 }
 
 #pragma mark - Required Overrides
@@ -82,22 +112,34 @@
     return !CGRectEqualToRect(oldBounds, newBounds);
 }
 
-//#pragma mark - Animations
-//
-//- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
-//    UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:itemIndexPath];
-//    attr.size = self.itemSize;
-//    attr.center = self.circleCenter;
-//    attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
-//    return attr;
-//}
-//
-//- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
-//    UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:itemIndexPath];
-//    attr.size = self.itemSize;
-//    attr.center = self.circleCenter;
-//    attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
-//    return attr;
-//}
+#pragma mark - Animations
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attr = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
+
+    if ([self.insertIndexPaths containsObject:itemIndexPath]) {
+        if (attr == nil) {
+            attr = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+        }
+        attr.center = self.circleCenter;
+        attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+    }
+
+    return attr;
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attr = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
+
+    if ([self.deleteIndexPaths containsObject:itemIndexPath]) {
+        if (attr == nil) {
+            attr = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+        }
+        attr.center = self.circleCenter;
+        attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+    }
+
+    return attr;
+}
 
 @end
