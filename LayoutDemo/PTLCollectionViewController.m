@@ -39,9 +39,6 @@ static NSString * const kCellId = @"Cell";
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"PTLCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kCellId];
 
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped:)];
-    self.navigationItem.rightBarButtonItem = add;
-
     UIStepper *stepper = [[UIStepper alloc] init];
     stepper.value = self.count;
     [stepper addTarget:self action:@selector(countChanged:) forControlEvents:UIControlEventValueChanged];
@@ -50,11 +47,6 @@ static NSString * const kCellId = @"Cell";
 }
 
 #pragma mark - User Interaction
-
-- (void)addTapped:(id)sender {
-    self.count++;
-    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:self.count-1 inSection:0]]];
-}
 
 - (void)countChanged:(UIStepper *)stepper {
     NSInteger newValue = stepper.value;
