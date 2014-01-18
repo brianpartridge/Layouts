@@ -40,7 +40,9 @@
 
     self.circleCenter = CGPointMake(CGRectGetMidX(self.collectionView.bounds),
                                     CGRectGetMidY(self.collectionView.bounds));
-    self.circleRadius = CGRectGetWidth(self.collectionView.bounds) / 2.0;
+    CGFloat smallestDimension = MIN(self.collectionView.bounds.size.width - self.itemSize.width,
+                                    self.collectionView.bounds.size.height - self.itemSize.height);
+    self.circleRadius = smallestDimension / 2.0;
 }
 
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems {
