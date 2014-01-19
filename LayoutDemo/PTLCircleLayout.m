@@ -30,6 +30,8 @@
 	if (self) {
         self.startingAngle = -M_PI / 2.0;
         self.itemSize = CGSizeMake(50, 50);
+        self.insertionAnimation = PTLCircleLayoutAnimationCenter;
+        self.deletionAnimation = PTLCircleLayoutAnimationCenter;
 	}
 
 	return self;
@@ -72,6 +74,14 @@
     self.insertIndexPaths = nil;
 }
 
+- (NSUInteger)numberOfItems {
+    NSUInteger count = 0;
+    for (int i = 0; i < [self.collectionView numberOfSections]; i++) {
+        count += [self.collectionView numberOfItemsInSection:i];
+    }
+    return count;
+}
+
 #pragma mark - Required Overrides
 
 - (CGSize)collectionViewContentSize {
@@ -92,7 +102,7 @@
     UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attr.size = self.itemSize;
 
-    NSUInteger count = [self.collectionView numberOfItemsInSection:0];
+    NSUInteger count = [self numberOfItems];
     if (indexPath.item == 0 &&
         count == 1) {
         attr.center = self.circleCenter;
@@ -105,6 +115,7 @@
     }
 
     attr.transform = CGAffineTransformIdentity;
+    attr.alpha = 1.0;
 
     return attr;
 }
@@ -123,8 +134,19 @@
         if (attr == nil) {
             attr = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
         }
-        attr.center = self.circleCenter;
-        attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+
+        switch (self.insertionAnimation) {
+            case PTLCircleLayoutAnimationCenter:
+                attr.center = self.circleCenter;
+                attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+                attr.alpha = 0;
+                break;
+            case PTLCircleLayoutAnimationPop:
+                attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+                attr.alpha = 0;
+            default:
+                break;
+        }
     }
 
     return attr;
@@ -137,8 +159,19 @@
         if (attr == nil) {
             attr = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
         }
-        attr.center = self.circleCenter;
-        attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+
+        switch (self.deletionAnimation) {
+            case PTLCircleLayoutAnimationCenter:
+                attr.center = self.circleCenter;
+                attr.transform = CGAffineTransformMakeScale(0.001, 0.001);
+                attr.alpha = 0;
+                break;
+            case PTLCircleLayoutAnimationPop:
+                attr.transform = CGAffineTransformMakeScale(10, 10);
+                attr.alpha = 0;
+            default:
+                break;
+        }
     }
 
     return attr;
