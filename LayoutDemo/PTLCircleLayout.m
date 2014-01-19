@@ -16,6 +16,8 @@
 @property (nonatomic, assign) CGPoint circleCenter;
 @property (nonatomic, assign) CGFloat circleRadius;
 
+@property (nonatomic, assign) NSUInteger numberOfItems;
+
 @property (nonatomic, strong) NSMutableArray *deleteIndexPaths;
 @property (nonatomic, strong) NSMutableArray *insertIndexPaths;
 
@@ -40,6 +42,8 @@
 - (void)prepareLayout {
     [super prepareLayout];
 
+    [self updateNumberOfItems];
+
     self.circleCenter = CGPointMake(CGRectGetMidX(self.collectionView.bounds),
                                     CGRectGetMidY(self.collectionView.bounds));
     CGFloat smallestDimension = MIN(self.collectionView.bounds.size.width - self.itemSize.width,
@@ -49,6 +53,8 @@
 
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems {
     [super prepareForCollectionViewUpdates:updateItems];
+
+    [self updateNumberOfItems];
 
     self.deleteIndexPaths = [NSMutableArray array];
     self.insertIndexPaths = [NSMutableArray array];
@@ -70,16 +76,18 @@
 - (void)finalizeCollectionViewUpdates {
     [super finalizeCollectionViewUpdates];
 
+    [self updateNumberOfItems];
+
     self.deleteIndexPaths = nil;
     self.insertIndexPaths = nil;
 }
 
-- (NSUInteger)numberOfItems {
+- (void)updateNumberOfItems {
     NSUInteger count = 0;
     for (int i = 0; i < [self.collectionView numberOfSections]; i++) {
         count += [self.collectionView numberOfItemsInSection:i];
     }
-    return count;
+    self.numberOfItems = count;
 }
 
 #pragma mark - Required Overrides
@@ -102,7 +110,7 @@
     UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attr.size = self.itemSize;
 
-    NSUInteger count = [self numberOfItems];
+    NSUInteger count = self.numberOfItems;
     if (indexPath.item == 0 &&
         count == 1) {
         attr.center = self.circleCenter;
